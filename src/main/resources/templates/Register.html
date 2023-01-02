@@ -18,7 +18,7 @@
 		</div>
 	</nav>
 	
-	<form class="form-horizontal">
+	<form class="form-horizontal" method="POST" action="/bills">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h1 class="panel-title">New Bill</h1>
@@ -28,30 +28,30 @@
 				<div class="form-group">
 					<label for="description" class="col-sm-2 control-label">Description</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="description"/>
+						<input type="text" class="form-control" id="description" name="description"/>
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label for="dueDate" class="col-sm-2 control-label">Due Date</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="dueDate"/>
+						<input type="text" class="form-control" id="dueDate" name="dueDate"/>
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label for="value" class="col-sm-2 control-label">Value</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="value"/>
+						<input type="text" class="form-control" id="value" name="value"/>
 					</div>
 				</div>
 				
 				<div class="form-group">
 					<label for="status" class="col-sm-2 control-label">Status</label>
 					<div class="col-sm-2">
-						<select class="form-control">
-							<option>Pending</option>
-							<option>Paid</option>
+						<select class="form-control" name="value">
+							<option value="PENDING">Pending</option>
+							<option value="PAID">Paid</option>
 						</select>
 					</div>
 				</div>

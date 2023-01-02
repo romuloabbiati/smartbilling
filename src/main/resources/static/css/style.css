@@ -6,3 +6,13 @@
 	margin-left: 10px;
 	margin-right: 10px;
 }
+
+.container-paid {
+	background-color: rgb(59, 196, 21);
+	border-radius: 3px;
+	color: white;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-left: 20px;
+	font: bolder;
+}
