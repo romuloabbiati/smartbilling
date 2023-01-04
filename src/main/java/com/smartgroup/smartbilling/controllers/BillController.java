@@ -37,6 +37,11 @@ public class BillController {
 		return modelAndView;
 	}
 	
+	@RequestMapping
+	public String search() {
+		return "Search";
+	}
+	
 	@ModelAttribute("allBillStatus")
 	public List<BillStatus> allBillStatus() {
 		return Arrays.asList(BillStatus.values());
