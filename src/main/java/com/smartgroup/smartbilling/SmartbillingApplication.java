@@ -19,5 +19,10 @@ public class SmartbillingApplication {
 	public LocaleResolver localeResolver() {
 		return new FixedLocaleResolver(new Locale("en", "GB"));
 	}
+	
+//	@Bean
+//	public LayoutDialect layoutDialect() {
+//		return new LayoutDialect();
+//	}
 
 }

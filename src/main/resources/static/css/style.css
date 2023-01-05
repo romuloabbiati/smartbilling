@@ -12,6 +12,16 @@
 	margin-right: 10px;
 }
 
+.sg-link-panel {
+	float: right;
+	padding: 0px;
+}
+
+.sg-bill-panel {
+	float: left;
+	padding-top: 2px;
+} 
+
 .container-paid {
 	background-color: rgb(59, 196, 21);
 	border-radius: 3px;
