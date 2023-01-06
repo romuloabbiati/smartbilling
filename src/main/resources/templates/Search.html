@@ -31,8 +31,22 @@
 					</tr>
 				</thead>
 				<tbody>
+					<tr th:each="bill : ${bills}">
+						<td class="text-center" th:text="${bill.id}">1</td>
+						<td th:text="${bill.description}"></td>
+						<td class="text-center" th:text="${{bill.dueDate}}"></td>
+						<td class="text-right" th:text="|£ ${{bill.value}}|"></td>
+						<td class="text-center">
+	   						<span class="label" th:text="${bill.status.description}"
+	   							th:classappend="${bill.pending ? 'label-danger' : 'label-success'}"></span>
+	   					</td>
+	   					<td class="text-center">
+						
+						</td>
+					</tr>
+				
 					<tr>
-						<td colspan="6">No bills was found</td>
+						<td colspan="6" th:if="${#lists.isEmpty(bills)}">No bills was found</td>
 					</tr>
 				</tbody>
 			</table>

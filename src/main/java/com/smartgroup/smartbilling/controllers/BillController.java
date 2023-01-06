@@ -24,7 +24,6 @@ public class BillController {
 	@RequestMapping("/new")
 	public ModelAndView newBill() {
 		ModelAndView modelAndView = new ModelAndView("Register");
-		modelAndView.addObject("allBillStatus", BillStatus.values());
 		return modelAndView;
 	}
 	
@@ -38,9 +37,17 @@ public class BillController {
 	}
 	
 	@RequestMapping
-	public String search() {
-		return "Search";
+	public ModelAndView search() {
+		List<Bill> allBills = billRepository.findAll();
+		ModelAndView modelAndView = new ModelAndView("Search");
+		modelAndView.addObject("bills", allBills);
+		return modelAndView;
 	}
+	
+//	@RequestMapping
+//	public String search() {
+//		return "Search";
+//	}
 	
 	@ModelAttribute("allBillStatus")
 	public List<BillStatus> allBillStatus() {

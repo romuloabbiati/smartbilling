@@ -70,11 +70,15 @@ public class Bill {
 	public BillStatus getStatus() {
 		return status;
 	}
-	
+
 	public void setStatus(BillStatus status) {
 		this.status = status;
 	}
 	
+	public boolean isPending() {
+		return BillStatus.PENDING.equals(this.status);
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
