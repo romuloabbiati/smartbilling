@@ -37,8 +37,9 @@
 						<td class="text-center" th:text="${{bill.dueDate}}"></td>
 						<td class="text-right" th:text="|£ ${{bill.value}}|"></td>
 						<td class="text-center">
-	   						<span class="label" th:text="${bill.status.description}"
+	   						<span class="label" th:text="${bill.status?.description}"
 	   							th:classappend="${bill.pending ? 'label-danger' : 'label-success'}"></span>
+	   						
 	   					</td>
 	   					<td class="text-center">
 						
