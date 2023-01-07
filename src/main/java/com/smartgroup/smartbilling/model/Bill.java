@@ -12,6 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
@@ -23,12 +28,18 @@ public class Bill {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotEmpty(message = "Description cannot be empty!")
+	@Size(max = 60, message = "Description cannot contain more than 60 characters!")
 	private String description;
 	
+	@NotNull(message = "Due date is required!")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date dueDate;
 	
+	@NotNull(message = "Value cannot be null!")
+	@DecimalMin(value = "0.01", message = "Value cannot be lower than 0.01!")
+	@DecimalMax(value = "9_999_999_999.99", message = "Value cannot be greater than 9,999,999,999.99!")
 	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal value;
 	

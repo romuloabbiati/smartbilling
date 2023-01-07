@@ -11,11 +11,12 @@
 
 <section layout:fragment="content">
 
-	<form class="form-horizontal" method="POST" action="/bills">
-		<div class="alert alert-success" th:if="${!#strings.isEmpty(message)}">
-			<span th:text="${message}">The bill was saved successfully!!!</span>
-		</div>
-	
+	<form class="form-horizontal" method="POST" action="/bills" th:object="${bill}">
+		<!-- maybe this is the correct one
+		<div th:replace="Header"></div>
+		-->
+		<div layout:include="Message"></div>
+			
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="clearflix">
@@ -25,21 +26,21 @@
 			</div>
 			
 			<div class="panel-body">
-				<div class="form-group">
+				<div class="form-group" th:classappend="${#fields.hasErrors('description')} ? has-error">
 					<label for="description" class="col-sm-2 control-label">Description</label>
 					<div class="col-sm-4">
 						<input type="text" class="form-control" id="description" name="description"/>
 					</div>
 				</div>
 				
-				<div class="form-group">
+				<div class="form-group" th:classappend="${#fields.hasErrors('dueDate')} ? has-error">
 					<label for="dueDate" class="col-sm-2 control-label">Due Date</label>
 					<div class="col-sm-2">
 						<input type="text" class="form-control" id="dueDate" name="dueDate"/>
 					</div>
 				</div>
 				
-				<div class="form-group">
+				<div class="form-group" th:classappend="${#fields.hasErrors('value')} ? has-error">
 					<label for="value" class="col-sm-2 control-label">Value</label>
 					<div class="col-sm-2">
 						<input type="text" class="form-control" id="value" name="value"/>

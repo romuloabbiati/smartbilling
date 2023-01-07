@@ -3,9 +3,12 @@ package com.smartgroup.smartbilling.controllers;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,14 +28,19 @@ public class BillController {
 	@RequestMapping("/new")
 	public ModelAndView newBill() {
 		ModelAndView modelAndView = new ModelAndView("Register");
+		modelAndView.addObject(new Bill());
 		return modelAndView;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView save(Bill bill) {
+	public ModelAndView save(@Valid Bill bill, Errors errors) {
+		ModelAndView modelAndView = new ModelAndView("Register");
+		if(errors.hasErrors()) {
+			return modelAndView;
+		}
+		
 		billRepository.save(bill);
 		
-		ModelAndView modelAndView = new ModelAndView("Register");
 		modelAndView.addObject("message", "The bill was saved successfully!");
 		return modelAndView;
 	}
