@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.smartgroup.smartbilling.model.Bill;
 import com.smartgroup.smartbilling.model.BillStatus;
@@ -33,16 +34,14 @@ public class BillController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView save(@Valid Bill bill, Errors errors) {
+	public String save(@Valid Bill bill, Errors errors, RedirectAttributes attributes) {
 		ModelAndView modelAndView = new ModelAndView("Register");
 		if(errors.hasErrors()) {
-			return modelAndView;
+			return "Register";
 		}
-		
 		billRepository.save(bill);
-		
-		modelAndView.addObject("message", "The bill was saved successfully!");
-		return modelAndView;
+		attributes.addFlashAttribute("message", "The bill was saved successfully!");
+		return "redirect:/bills/new";
 	}
 	
 	@RequestMapping

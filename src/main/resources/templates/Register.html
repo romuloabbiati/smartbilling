@@ -15,7 +15,7 @@
 		<!-- maybe this is the correct one
 		<div th:replace="Header"></div>
 		-->
-		<div layout:include="Message"></div>
+		<div layout:insert="Message"></div>
 			
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -29,21 +29,21 @@
 				<div class="form-group" th:classappend="${#fields.hasErrors('description')} ? has-error">
 					<label for="description" class="col-sm-2 control-label">Description</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="description" name="description"/>
+						<input type="text" class="form-control" id="description" th:field="*{description}"/>
 					</div>
 				</div>
 				
 				<div class="form-group" th:classappend="${#fields.hasErrors('dueDate')} ? has-error">
 					<label for="dueDate" class="col-sm-2 control-label">Due Date</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="dueDate" name="dueDate"/>
+						<input type="text" class="form-control" id="dueDate" th:field="*{dueDate}"/>
 					</div>
 				</div>
 				
 				<div class="form-group" th:classappend="${#fields.hasErrors('value')} ? has-error">
 					<label for="value" class="col-sm-2 control-label">Value</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="value" name="value"/>
+						<input type="text" class="form-control" id="value" th:field="*{value}"/>
 					</div>
 				</div>
 				
