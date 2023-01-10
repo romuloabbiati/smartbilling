@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,21 +24,22 @@ import com.smartgroup.smartbilling.repositories.BillRepository;
 @RequestMapping("/bills")
 public class BillController {
 	
+	private static final String REGISTER_VIEW = "Register";
+	
 	@Autowired
 	private BillRepository billRepository;
 
 	@RequestMapping("/new")
 	public ModelAndView newBill() {
-		ModelAndView modelAndView = new ModelAndView("Register");
+		ModelAndView modelAndView = new ModelAndView(REGISTER_VIEW);
 		modelAndView.addObject(new Bill());
 		return modelAndView;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String save(@Valid Bill bill, Errors errors, RedirectAttributes attributes) {
-		ModelAndView modelAndView = new ModelAndView("Register");
 		if(errors.hasErrors()) {
-			return "Register";
+			return REGISTER_VIEW;
 		}
 		billRepository.save(bill);
 		attributes.addFlashAttribute("message", "The bill was saved successfully!");
@@ -55,10 +57,14 @@ public class BillController {
 		return modelAndView;
 	}
 	
-//	@RequestMapping
-//	public String search() {
-//		return "Search";
-//	}
+	@RequestMapping("/{id}")
+	public ModelAndView edit(@PathVariable Long id) {
+		Bill bill = billRepository.getOne(id);
+		
+		ModelAndView modelAndView = new ModelAndView(REGISTER_VIEW);
+		modelAndView.addObject(bill);
+		return modelAndView;
+	}
 	
 	@ModelAttribute("allBillStatus")
 	public List<BillStatus> allBillStatus() {
