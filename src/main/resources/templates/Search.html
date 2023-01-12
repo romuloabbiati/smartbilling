@@ -45,6 +45,10 @@
 							<a class="btn btn-link btn-xs" th:href="@{/bills/{id}(id=${bill.id})}">
 								<span class="glyphicon glyphicon-pencil"></span>
 							</a>
+							<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#deleteConfirmationModal"
+								th:attr="data-id=${bill.id}">
+								<span class="glyphicon glyphicon-remove"></span>
+							</a>
 						</td>
 					</tr>
 				
@@ -54,6 +58,9 @@
 				</tbody>
 			</table>
 		</div>
+		
+		<div th:replace="DeletePopUp"></div>
+		
 	</div>
 </section>
 </html>
