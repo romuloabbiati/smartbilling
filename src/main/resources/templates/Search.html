@@ -10,6 +10,8 @@
 </head>
 
 <section layout:fragment="content">
+	<div th:replace="GeneralMessage"></div>
+
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<div class="clearfix">
@@ -46,7 +48,7 @@
 								<span class="glyphicon glyphicon-pencil"></span>
 							</a>
 							<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#deleteConfirmationModal"
-								th:attr="data-id=${bill.id}">
+								th:attr="data-id=${bill.id}, data-description=${bill.description}">
 								<span class="glyphicon glyphicon-remove"></span>
 							</a>
 						</td>

@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -68,8 +67,10 @@ public class BillController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public String delete(@PathVariable Long id) {
+	public String delete(@PathVariable Long id, RedirectAttributes attributes) {
 		billRepository.deleteById(id);
+		
+		attributes.addFlashAttribute("message", "Bill successfully deleted!");
 		return "redirect:/bills";
 	}
 	

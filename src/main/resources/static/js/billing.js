@@ -3,7 +3,17 @@ $('#deleteConfirmationModal').on('show.bs.modal', function(event) {
 	var button = $(event.relatedTarget);
 	
 	var billId = button.data('id');
+	var billDescription = button.data('description');
 	
-	alert(billId);
+	
+	var modal = $(this);
+	var form = modal.find('form');
+	var action = form.attr('action');
+	if(!action.endsWith('/')) {
+		action += '/';
+	}
+	form.attr('action', action + billId);
+	
+	modal.find('.modal-body span').html('Are you sure you wish to delete the following bill <strong>' + billDescription + '</strong>?')
 	
 });
