@@ -8,7 +8,7 @@
 <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" data-keyboard="false" data-backdrop="static">
 	<div class="modal-dialog">
 		
-		<form action="/bills" method="POST">
+		<form th:attr="data-base-url='/bills'" method="POST">
 			<input type="hidden" name="_method" value="DELETE" />
 			
 			<div class="modal-content">

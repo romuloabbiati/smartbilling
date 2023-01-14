@@ -44,11 +44,13 @@
 	   						
 	   					</td>
 	   					<td class="text-center">
-							<a class="btn btn-link btn-xs" th:href="@{/bills/{id}(id=${bill.id})}">
+							<a class="btn btn-link btn-xs" th:href="@{/bills/{id}(id=${bill.id})}"
+								title="Edit" rel="tooltip" data-placement="top">
 								<span class="glyphicon glyphicon-pencil"></span>
 							</a>
 							<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#deleteConfirmationModal"
-								th:attr="data-id=${bill.id}, data-description=${bill.description}">
+								th:attr="data-id=${bill.id}, data-description=${bill.description}"
+								title="Delete" rel="tooltip" data-placement="top">
 								<span class="glyphicon glyphicon-remove"></span>
 							</a>
 						</td>

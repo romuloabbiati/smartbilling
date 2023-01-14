@@ -8,7 +8,7 @@ $('#deleteConfirmationModal').on('show.bs.modal', function(event) {
 	
 	var modal = $(this);
 	var form = modal.find('form');
-	var action = form.attr('action');
+	var action = form.data('base-url');
 	if(!action.endsWith('/')) {
 		action += '/';
 	}
@@ -16,4 +16,8 @@ $('#deleteConfirmationModal').on('show.bs.modal', function(event) {
 	
 	modal.find('.modal-body span').html('Are you sure you wish to delete the following bill <strong>' + billDescription + '</strong>?')
 	
+});
+
+$(function() {
+	$('[rel="tooltip"]').tooltip();
 });
