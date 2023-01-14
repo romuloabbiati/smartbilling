@@ -6,6 +6,7 @@
 <head>
 <title>Register a bill</title>
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css.map" />
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
 
@@ -40,7 +41,9 @@
 				<div class="form-group" th:classappend="${#fields.hasErrors('dueDate')} ? has-error">
 					<label for="dueDate" class="col-sm-2 control-label">Due Date</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control" id="dueDate" th:field="*{dueDate}"/>
+						<input type="text" class="form-control" id="dueDate" th:field="*{dueDate}"
+							data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="en-GB" 
+							data-date-autoclose="true" data-date-today-highlight="true" data-date-orientation="bottom" />
 					</div>
 				</div>
 				

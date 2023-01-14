@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
@@ -41,9 +42,14 @@ public class BillController {
 		if(errors.hasErrors()) {
 			return REGISTER_VIEW;
 		}
-		billRepository.save(bill);
-		attributes.addFlashAttribute("message", "The bill was saved successfully!");
-		return "redirect:/bills/new";
+		try {
+			billRepository.save(bill);
+			attributes.addFlashAttribute("message", "The bill was saved successfully!");
+			return "redirect:/bills/new";
+		} catch (DataIntegrityViolationException e) {
+			errors.reject("dueDate", null, "Invalid date format!");
+			return REGISTER_VIEW;
+		}
 	}
 	
 	@RequestMapping
