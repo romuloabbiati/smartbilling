@@ -6,7 +6,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
@@ -20,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.smartgroup.smartbilling.model.Bill;
 import com.smartgroup.smartbilling.model.BillStatus;
 import com.smartgroup.smartbilling.repositories.BillRepository;
+import com.smartgroup.smartbilling.services.BillService;
 
 @Controller
 @RequestMapping("/bills")
@@ -29,6 +29,9 @@ public class BillController {
 	
 	@Autowired
 	private BillRepository billRepository;
+	
+	@Autowired
+	private BillService billService;
 
 	@RequestMapping("/new")
 	public ModelAndView newBill() {
@@ -46,8 +49,8 @@ public class BillController {
 			billRepository.save(bill);
 			attributes.addFlashAttribute("message", "The bill was saved successfully!");
 			return "redirect:/bills/new";
-		} catch (DataIntegrityViolationException e) {
-			errors.reject("dueDate", null, "Invalid date format!");
+		} catch (IllegalArgumentException e) {
+			errors.reject("dueDate", null, e.getMessage());
 			return REGISTER_VIEW;
 		}
 	}
@@ -74,7 +77,7 @@ public class BillController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public String delete(@PathVariable Long id, RedirectAttributes attributes) {
-		billRepository.deleteById(id);
+		billService.delete(id);
 		
 		attributes.addFlashAttribute("message", "Bill successfully deleted!");
 		return "redirect:/bills";
