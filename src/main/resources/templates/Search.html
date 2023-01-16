@@ -39,7 +39,7 @@
 						<td th:text="${bill.description}"></td>
 						<td class="text-center" th:text="${{bill.dueDate}}"></td>
 						<td class="text-right" th:text="|£ ${{bill.value}}|"></td>
-						<td class="text-center">
+						<td class="text-center" th:attr="data-role=${bill.id}">
 	   						<span class="label" th:text="${bill.status?.description}"
 	   							th:classappend="${bill.pending ? 'label-danger' : 'label-success'}"></span>
 	   						
@@ -49,11 +49,20 @@
 								title="Edit" rel="tooltip" data-placement="top">
 								<span class="glyphicon glyphicon-pencil"></span>
 							</a>
+							
 							<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#deleteConfirmationModal"
 								th:attr="data-id=${bill.id}, data-description=${bill.description}"
 								title="Delete" rel="tooltip" data-placement="top">
 								<span class="glyphicon glyphicon-remove"></span>
 							</a>
+							
+							<a class="btn btn-link btn-xs js-update-status" th:if="${bill.pending}"
+								title="Receive" rel="tooltip" data-placement="top"
+								th:attr="data-id=${bill.id}"
+								th:href="@{/bills/{id}/receive(id=${bill.id})}">
+								<span class="glyphicon glyphicon-check"></span>
+							</a>
+
 						</td>
 					</tr>
 				

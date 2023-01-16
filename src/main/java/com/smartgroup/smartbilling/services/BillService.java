@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.smartgroup.smartbilling.model.Bill;
+import com.smartgroup.smartbilling.model.BillStatus;
 import com.smartgroup.smartbilling.repositories.BillRepository;
 
 @Service
@@ -25,6 +26,14 @@ public class BillService {
 	
 	public void delete(Long id) {
 		billRepository.deleteById(id);
+	}
+	
+	@Transactional
+	public String receive(Long id) {
+		Bill bill = billRepository.getOne(id);
+		bill.setStatus(BillStatus.PAID);
+		billRepository.save(bill);
+		return BillStatus.PAID.getDescription();
 	}
 	
 }
