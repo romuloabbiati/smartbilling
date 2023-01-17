@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.smartgroup.smartbilling.model.Bill;
 import com.smartgroup.smartbilling.model.BillStatus;
 import com.smartgroup.smartbilling.repositories.BillRepository;
+import com.smartgroup.smartbilling.repositories.filter.BillFilter;
 import com.smartgroup.smartbilling.services.BillService;
 
 @Controller
@@ -47,7 +48,7 @@ public class BillController {
 			return REGISTER_VIEW;
 		}
 		try {
-			billRepository.save(bill);
+			billService.save(bill);
 			attributes.addFlashAttribute("message", "The bill was saved successfully!");
 			return "redirect:/bills/new";
 		} catch (IllegalArgumentException e) {
@@ -58,8 +59,8 @@ public class BillController {
 	
 	@RequestMapping
 	@Transactional(readOnly = true)
-	public ModelAndView search() {
-		List<Bill> allBills = billRepository.findAll();
+	public ModelAndView search(@ModelAttribute("filter") BillFilter filter) {
+		List<Bill> allBills = billService.filter(filter);
 		
 		ModelAndView modelAndView = new ModelAndView("Search");
 		modelAndView.addObject("bills", allBills);
