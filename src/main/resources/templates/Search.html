@@ -5,9 +5,9 @@
 	layout:decorate="~{StandardLayout}">
 <head>
 	<title>Bill's Search</title>
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css.map" />
-	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css.map}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 </head>
 
 <section layout:fragment="content">
@@ -17,13 +17,13 @@
 		<div class="panel-heading">
 			<div class="clearfix">
 				<h1 class="panel-title sg-bill-panel">Bill's Search</h1>
-				<a class="btn btn-link sg-link-panel" href="/bills/new">New Bill</a>
+				<a class="btn btn-link sg-link-panel" th:href="@{/bills/new}">New Bill</a>
 			</div>
 		</div>
 		
 		<div class="panel-body">
 		
-			<form method="GET" class="form-horizontal" action="/bills" th:object="${filter}">
+			<form method="GET" class="form-horizontal" th:action="@{/bills}" th:object="${filter}">
 				<div class="form-group">
 					<div class="col-sm-4">
 						<div class="input-group">

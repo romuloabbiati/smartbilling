@@ -5,14 +5,14 @@
 	layout:decorate="~{StandardLayout}">
 <head>
 <title>Register a bill</title>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css.map" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css.map}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 </head>
 
 <section layout:fragment="content">
 
-	<form class="form-horizontal" method="POST" action="/bills" th:object="${bill}">
+	<form class="form-horizontal" method="POST" th:action="@{/bills}" th:object="${bill}">
 		<!-- maybe this is the correct one
 		<div th:replace="Header"></div>
 		-->
@@ -23,7 +23,7 @@
 			<div class="panel-heading">
 				<div class="clearflix">
 					<h1 class="panel-title sg-bill-panel">New Bill</h1>
-					<a class="btn btn-link sg-link-panel" href="/bills">Return to Bills</a>
+					<a class="btn btn-link sg-link-panel" th:href="@{/bills}">Return to Bills</a>
 				</div>
 			</div>
 			

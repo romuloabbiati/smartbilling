@@ -31,3 +31,7 @@
 	padding-left: 20px;
 	font: bolder;
 }
+
+.panel-heading {
+	height: 43px;
+}
